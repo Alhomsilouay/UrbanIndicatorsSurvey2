@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<!-- saved from url=(0168)file:///D:/Plan%202030/_____Aga%20Khan/%D8%A7%D9%84%D9%85%D8%AC%D9%84%D8%B3%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A/_Field_Surveying/_SW_SetUp/Salamieh_Survey_Ver_9.html -->
+<html lang="ar" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المسح الميداني - سلمية | ALSUC</title>
+
+<script src="./xlsx.bundle.js"></script>
+
+<style>
+  :root{
+    --bg:#f4f6fa; --card:#fff; --primary:#1d6fb8; --primary-d:#155a94;
+    --ok:#2e9e5b; --warn:#d97706; --danger:#c0392b; --border:#dfe4ec;
+    --text:#1f2937; --muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);
+    color:var(--text);padding-bottom:80px;}
+  header{background:var(--primary);color:#fff;padding:14px 16px;position:sticky;
+    top:0;z-index:10;box-shadow:0 2px 6px rgba(0,0,0,.15);display:flex;
+    align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  header h1{margin:0;font-size:18px;}
+  header small{opacity:.85;display:block;font-size:12px;}
+  header .company{
+    font-size:11px;opacity:.85;margin-bottom:3px;
+    letter-spacing:2px;font-weight:700;
+  }
+  header .email{
+    color:#fff;text-decoration:none;opacity:.9;font-size:11px;
+    border-bottom:1px dotted rgba(255,255,255,.5);
+    display:inline-block;margin-top:2px;
+  }
+  header .email:hover{opacity:1;border-bottom-color:#fff;}
+  main{padding:12px;max-width:1000px;margin:auto;}
+  section{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:12px;margin-bottom:12px;}
+  section h2{margin:0 0 10px;font-size:15px;color:var(--primary-d);
+    border-bottom:1px solid var(--border);padding-bottom:6px;}
+  label{display:block;font-size:13px;margin:8px 0 4px;font-weight:600;}
+  label .req{color:var(--danger);margin-right:3px;}
+  input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--border);
+    border-radius:8px;font-size:14px;background:#fff;color:var(--text);
+    font-family:inherit;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(29,111,184,.15);}
+  .grid{display:grid;gap:8px;}
+  @media(min-width:640px){
+    .grid-2{grid-template-columns:1fr 1fr;}
+    .grid-3{grid-template-columns:1fr 1fr 1fr;}
+  }
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:10px 14px;border:none;border-radius:8px;font-size:14px;cursor:pointer;
+    font-weight:600;font-family:inherit;}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{background:var(--primary-d);}
+  .btn-ok{background:var(--ok);color:#fff;}
+  .btn-warn{background:var(--warn);color:#fff;}
+  .btn-danger{background:var(--danger);color:#fff;}
+  .btn-ghost{background:#eef2f7;color:var(--text);}
+  .btn-sm{padding:5px 9px;font-size:12px;}
+  .toolbar{position:fixed;bottom:0;left:0;right:0;background:#fff;
+    border-top:1px solid var(--border);padding:10px;display:flex;gap:8px;
+    justify-content:center;box-shadow:0 -2px 8px rgba(0,0,0,.08);z-index:20;
+    flex-wrap:wrap;}
+  .toolbar .btn{flex:1;max-width:220px;min-width:120px;}
+  .hint{font-size:12px;color:var(--muted);margin-top:4px;}
+  .chip{display:inline-block;background:#eef2f7;color:var(--primary-d);
+    padding:2px 8px;border-radius:999px;font-size:12px;margin:2px 2px 0 0;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{border-bottom:1px solid var(--border);padding:6px 8px;text-align:right;}
+  th{background:#f7f9fc;font-size:12px;color:var(--muted);}
+  tbody tr.rec-row{cursor:pointer;transition:background .15s;}
+  tbody tr.rec-row:hover{background:#f0f7ff;}
+  tbody tr.rec-row.editing{background:#fff7ed;}
+  tbody tr.rec-row.editing td:first-child:before{
+    content:"✏️ "; color:var(--warn); font-weight:700;
+  }
+  .empty{text-align:center;color:var(--muted);padding:14px;}
+  .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
+    background:#111;color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;
+    opacity:0;pointer-events:none;transition:.3s;z-index:50;max-width:90%;text-align:center;
+    line-height:1.5;}
+  .toast.show{opacity:.95;}
+  .photo-preview{max-width:100%;margin-top:6px;border-radius:8px;display:none;
+    border:1px solid var(--border);}
+  .photo-info{
+    font-size:11px;color:var(--ok);margin-top:4px;font-weight:600;
+    display:none;
+  }
+  .photo-info.show{display:block;}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;}
+  .pill-high{background:#fde2e2;color:#a11;}
+  .pill-mid{background:#fef3c7;color:#92400e;}
+  .pill-low{background:#dcfce7;color:#166534;}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;
+    align-items:flex-start;justify-content:center;z-index:100;padding:20px;
+    overflow-y:auto;}
+  .modal.open{display:flex;}
+  .modal-box{background:#fff;border-radius:12px;max-width:820px;width:100%;
+    padding:16px;box-shadow:0 10px 40px rgba(0,0,0,.3);margin:auto;}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:12px;}
+  .modal-header h2{margin:0;font-size:17px;color:var(--primary-d);
+    border:none;padding:0;}
+  .field-row{display:flex;align-items:center;gap:6px;padding:6px 8px;
+    border-radius:6px;background:#f9fafc;margin-bottom:4px;font-size:13px;}
+  .field-row .fname{flex:1;}
+  .field-row .ftype{color:var(--muted);font-size:11px;}
+  .sec-block{border:1px solid var(--border);border-radius:8px;padding:8px;
+    margin-bottom:10px;background:#fbfcfe;}
+  .sec-block h3{margin:0 0 6px;font-size:14px;color:var(--primary-d);
+    display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;}
+  .sec-block h3 .sec-title{flex:1;}
+  .add-form{background:#f0f7ff;border:1px dashed var(--primary);
+    border-radius:8px;padding:10px;margin-top:10px;}
+  .add-form h3{margin:0 0 8px;font-size:14px;color:var(--primary-d);}
+  .add-form.editing{background:#fff7ed;border-color:var(--warn);border-style:solid;}
+  .add-form.editing h3{color:var(--warn);}
+  .row-flex{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;}
+  .row-flex > div{flex:1;min-width:140px;}
+  .badge{background:#e0e7ff;color:#3730a3;padding:1px 6px;border-radius:6px;
+    font-size:10px;margin-right:4px;}
+  .edit-icon{background:#e0e7ff;color:#3730a3;border:none;padding:4px 8px;
+    border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;}
+  .edit-icon:hover{background:#c7d2fe;}
+  .gps-help{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;
+    align-items:center;justify-content:center;z-index:200;padding:16px;
+    font-family:inherit;}
+  .gps-help-box{background:#fff;border-radius:14px;padding:18px;
+    max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.4);
+    max-height:90vh;overflow-y:auto;}
+  .gps-help-box h3{margin:0 0 12px;font-size:17px;}
+  .gps-help-btn{display:block;width:100%;padding:12px;border:none;
+    border-radius:8px;font-size:14px;font-weight:700;margin-bottom:8px;
+    cursor:pointer;font-family:inherit;text-align:center;}
+  .gps-code{background:#1d6fb8;color:#fff;padding:4px 8px;
+    border-radius:4px;font-size:11px;display:inline-block;
+    margin:4px 0;word-break:break-all;font-family:monospace;}
+
+  .edit-banner{
+    display:none;
+    background: linear-gradient(135deg, #fff7ed, #fde68a);
+    border: 2px solid var(--warn);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(217,119,6,.2);
+    position: sticky;
+    top: 64px;
+    z-index: 9;
+  }
+  .edit-banner.open{ display:block; }
+  .edit-banner .row{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px; flex-wrap:wrap;
+  }
+  .edit-banner .txt{
+    font-size:14px; font-weight:700; color:#78350f;
+    display:flex; align-items:center; gap:8px; flex:1;
+  }
+  .edit-banner .txt .num{
+    background:#78350f; color:#fff;
+    padding:2px 10px; border-radius:6px;
+    font-size:13px;
+  }
+  .edit-banner .hint{
+    margin-top:6px; font-size:12px; color:#92400e;
+  }
+  .edit-banner .actions{ display:flex; gap:6px; flex-shrink:0; }
+
+  .password-box{
+    max-width: 360px;
+    text-align: center;
+  }
+  .password-box .icon{
+    font-size: 42px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .password-box h3{
+    text-align: center;
+    margin: 0 0 6px;
+    color: var(--primary-d);
+  }
+  .password-box .subtitle{
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 14px;
+    line-height: 1.5;
+  }
+  #passwordInput{
+    width:100%;
+    padding: 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 6px;
+    font-weight: 700;
+    transition: border-color .3s, box-shadow .3s;
+    font-family: 'Courier New', monospace;
+  }
+  #passwordInput:focus{
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(29,111,184,.15);
+  }
+  #passwordInput.error{
+    border-color: var(--danger);
+    box-shadow: 0 0 0 4px rgba(192,57,43,.15);
+    animation: shake .4s;
+  }
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-6px);}
+    75%{transform:translateX(6px);}
+  }
+  #passwordError{
+    color: var(--danger);
+    font-size: 13px;
+    min-height: 20px;
+    margin: 8px 0;
+    font-weight: 600;
+  }
+  .pw-hint{
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .pw-card{
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fff;
+  }
+  .pw-card h4{
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: var(--primary-d);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pw-card input{
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="company">ALSUC</div>
+    <h1>المسح الميداني الخدمي — سلمية</h1>
+    <small>
+      وحدة المسح = مقطع شارع واحد
+      <br>
+      <a href="mailto:alhomsilouay@gmail.com" class="email">
+        ✉ alhomsilouay@gmail.com
+      </a>
+    </small>
+  </div>
+  <button class="btn btn-ghost btn-sm" onclick="openSettings()">⚙ إدارة الحقول</button>
+</header>
+
+<main>
+  <div id="editBanner" class="edit-banner">
+    <div class="row">
+      <div class="txt">
+        ✏️ أنت في وضع التحرير — السجل رقم
+        <span class="num" id="editBannerSeq">—</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-warn btn-sm" onclick="updateRecord()">
+          💾 تحديث
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="cancelEdit()">
+          ✕ إلغاء التحرير
+        </button>
+      </div>
+    </div>
+    <div class="hint">
+      عدّل ما تريد ثم اضغط "تحديث". أو "إلغاء التحرير" للعودة لوضع إدخال سجل جديد.
+    </div>
+  </div>
+
+  <div id="formContainer"><section data-sec="gis">
+      <h2>١. بيانات الموقع (GIS)</h2>
+      <div class="grid">
+        <div><label for="field_sector">القطاع</label><input id="field_sector" type="text"></div><div><label for="field_neighborhood">الحي</label><input id="field_neighborhood" type="text"></div><div><label for="field_street_name">اسم الشارع</label><input id="field_street_name" type="text"></div><div><label for="field_start_point">نقطة البداية</label><input id="field_start_point" type="text"></div><div><label for="field_end_point">نقطة النهاية</label><input id="field_end_point" type="text"></div><div><label for="field_street_no">رقم الشارع</label><input id="field_street_no" type="text"></div><div>
+        <label for="field_street_type">نوع الشارع</label>
+        <select id="field_street_type"><option value="">— اختر —</option><option value="رئيسيّ">رئيسيّ</option><option value="ثانويّ">ثانويّ</option><option value="تجاريّ">تجاريّ</option><option value="سكنيّ">سكنيّ</option><option value="مختلط">مختلط</option></select>
+      </div><div><label for="field_survey_date">تاريخ المسح</label><input id="field_survey_date" type="date"></div><div>
+        <label for="field_gps">إحداثيات GPS (نقطة البداية)</label>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <input id="field_gps" placeholder="خط العرض, خط الطول" readonly="" style="flex:1;min-width:180px;">
+          <button class="btn btn-ghost" type="button" id="gpsBtn_gps">📍 GPS</button>
+          <button class="btn btn-ghost btn-sm" type="button" onclick="openManualGPS('gps')" title="إدخال يدوي">✏️ يدوي</button>
+          <button class="btn btn-ghost btn-sm" type="button" onclick="openGoogleMaps()" title="فتح Google Maps">🗺️</button>
+        </div>
+      </div><div>
+        <label for="field_photo">صورة المقطع</label>
+        <input id="field_photo" type="file" accept="image/*" capture="environment">
+        <img id="preview_photo" class="photo-preview" alt="">
+        <div class="photo-info" id="photoInfo_photo"></div>
+      </div><div><label for="field_survey_team">فريق المسح</label><input id="field_survey_team" type="text"></div><div><label for="field_gis_notes">ملاحظات بيانات الموقع</label>
+        <textarea id="field_gis_notes" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="sensitivity">
+      <h2>٢. الحساسية وكثافة الحركة</h2>
+      <div class="grid">
+        <div>
+        <label for="field_sensitivity">حساسية الموقع</label>
+        <select id="field_sensitivity"><option value="">— اختر —</option><option value="عالي">عالي</option><option value="متوسط">متوسط</option><option value="منخفض">منخفض</option></select>
+      </div><div>
+        <label for="field_sensitivity_reason">سبب الحساسية</label>
+        <select id="field_sensitivity_reason"><option value="">— اختر —</option><option value="مدرسة">مدرسة</option><option value="مشفى">مشفى</option><option value="سوق">سوق</option><option value="مركز حكومي">مركز حكومي</option><option value="معلم تاريخي">معلم تاريخي</option><option value="ساحة عامة">ساحة عامة</option><option value="مسجد">مسجد</option><option value="منطقة سياحية">منطقة سياحية</option><option value="أخرى">أخرى</option></select>
+      </div><div>
+        <label for="field_traffic">كثافة الحركة</label>
+        <select id="field_traffic"><option value="">— اختر —</option><option value="عالي">عالي</option><option value="متوسط">متوسط</option><option value="منخفض">منخفض</option></select>
+      </div><div><label for="field_sensitivity_notes">ملاحظات حول الحساسية</label>
+        <textarea id="field_sensitivity_notes" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="infra">
+      <h2>٣. البنية التحتية</h2>
+      <div class="grid">
+        <div>
+        <label for="field_pavement">حالة الرصف</label>
+        <select id="field_pavement"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div><label for="field_damaged_area">مساحة الإسفلت المتضررة (م²)</label>
+        <input id="field_damaged_area" type="number" min="0" step="0.1"></div><div>
+        <label for="field_sidewalk">حالة الأرصفة</label>
+        <select id="field_sidewalk"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div><label for="field_damaged_sidewalk">طول الأرصفة المتضررة (م)</label>
+        <input id="field_damaged_sidewalk" type="number" min="0" step="0.1"></div><div>
+        <label for="field_lighting">جودة الإنارة</label>
+        <select id="field_lighting"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_drainage">تصريف مياه الأمطار</label>
+        <select id="field_drainage"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_curbs">حالة الأرصفة الجانبية (الحدود)</label>
+        <select id="field_curbs"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div><label for="field_infra_notes">ملاحظات حول البنية التحتية</label>
+        <textarea id="field_infra_notes" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="visual">
+      <h2>٤. الهوية البصرية والفن العام</h2>
+      <div class="grid">
+        <div>
+        <label for="field_aesthetics">الجمالية البصرية</label>
+        <select id="field_aesthetics"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_facades">حالة الواجهات</label>
+        <select id="field_facades"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_ads">حالة الإعلانات</label>
+        <select id="field_ads"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_murals">الجداريات والفن العام</label>
+        <select id="field_murals"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_deco_light">الإنارة الجمالية</label>
+        <select id="field_deco_light"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_visual_pollution">التلوث البصري</label>
+        <select id="field_visual_pollution"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_signage">اللافتات الإرشادية</label>
+        <select id="field_signage"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div><label for="field_visual_notes">ملاحظات عن الهوية البصرية</label>
+        <textarea id="field_visual_notes" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="cleaning">
+      <h2>٥. النظافة</h2>
+      <div class="grid">
+        <div>
+        <label for="field_cleanness">نظافة الشارع</label>
+        <select id="field_cleanness"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div><label for="field_bins_avail">عدد الحاويات المتوفرة</label>
+        <input id="field_bins_avail" type="number" min="0" step="1" inputmode="numeric"></div><div><label for="field_bins_240">حاويات 240 لتر المطلوبة</label>
+        <input id="field_bins_240" type="number" min="0" step="1" inputmode="numeric"></div><div><label for="field_bins_big">الحاويات الكبيرة المطلوبة</label>
+        <input id="field_bins_big" type="number" min="0" step="1" inputmode="numeric"></div><div>
+        <label for="field_air">جودة الهواء والروائح</label>
+        <select id="field_air"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_waste">مخلفات بناء ونفايات</label>
+        <select id="field_waste"><option value="">— اختر —</option><option value="لا يوجد">لا يوجد</option><option value="يوجد قليلاً">يوجد قليلاً</option><option value="يوجد كثيراً">يوجد كثيراً</option></select>
+      </div><div><label for="field_cleaning_frequency">الفترة الدورية للتنظيف (يوم)</label>
+        <input id="field_cleaning_frequency" type="number" min="0" step="1" inputmode="numeric"></div><div>
+        <label for="field_بؤر">بؤر</label>
+        <select id="field_بؤر"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div><label for="field_ملاحظات_عن_النظافة">ملاحظات عن النظافة</label>
+        <textarea id="field_ملاحظات_عن_النظافة" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="urban">
+      <h2>٦. المؤشرات الحضرية والبيئية</h2>
+      <div class="grid">
+        <div>
+        <label for="field_pedestrian">سلامة المشاة</label>
+        <select id="field_pedestrian"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_access">إمكانية الوصول (ذوي الاحتياجات الخاصة)</label>
+        <select id="field_access"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_noise_level">مستوى الضوضاء</label>
+        <select id="field_noise_level"><option value="">— اختر —</option><option value="عالي جداً">عالي جداً</option><option value="عالي">عالي</option><option value="متوسط">متوسط</option><option value="ضعيف">ضعيف</option><option value="ضعيف جداً">ضعيف جداً</option></select>
+      </div><div>
+        <label for="field_night">الأمان الليلي</label>
+        <select id="field_night"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_bike_lanes">مسارات الدراجات الهوائية</label>
+        <select id="field_bike_lanes"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_speed_bumps">المطبات</label>
+        <select id="field_speed_bumps"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_parked_cars">ازدحام السيارات المركونة</label>
+        <select id="field_parked_cars"><option value="">— اختر —</option><option value="كبير جداً">كبير جداً</option><option value="كبير">كبير</option><option value="متوسط">متوسط</option><option value="قليل">قليل</option><option value="قليل جداً">قليل جداً</option></select>
+      </div><div>
+        <label for="field_emissions">الانبعاثات وعوادم المركبات</label>
+        <select id="field_emissions"><option value="">— اختر —</option><option value="كبير جداً">كبير جداً</option><option value="كبير">كبير</option><option value="متوسط">متوسط</option><option value="قليل">قليل</option><option value="قليل جداً">قليل جداً</option></select>
+      </div><div>
+        <label for="field_pedestrian_density">كثافة المشاة</label>
+        <select id="field_pedestrian_density"><option value="">— اختر —</option><option value="كبير جداً">كبير جداً</option><option value="كبير">كبير</option><option value="متوسط">متوسط</option><option value="قليل">قليل</option><option value="قليل جداً">قليل جداً</option></select>
+      </div><div>
+        <label for="field_dust">الغبار والأتربة</label>
+        <select id="field_dust"><option value="">— اختر —</option><option value="كبير جداً">كبير جداً</option><option value="كبير">كبير</option><option value="متوسط">متوسط</option><option value="قليل">قليل</option><option value="قليل جداً">قليل جداً</option></select>
+      </div><div>
+        <label for="field_الحيوانات_الشاردة">الحيوانات الشاردة</label>
+        <select id="field_الحيوانات_الشاردة"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div><label for="field_ملاحظات_المؤشرات_الحضرية_والبيئية">ملاحظات المؤشرات الحضرية والبيئية</label>
+        <textarea id="field_ملاحظات_المؤشرات_الحضرية_والبيئية" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="green">
+      <h2>٧. المساحات الخضراء</h2>
+      <div class="grid">
+        <div>
+        <label for="field_tree_density">كثافة الأشجار</label>
+        <select id="field_tree_density"><option value="">— اختر —</option><option value="عالية">عالية</option><option value="متوسطة">متوسطة</option><option value="منخفضة">منخفضة</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_shade">الظلال</label>
+        <select id="field_shade"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_parks">الحدائق</label>
+        <select id="field_parks"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div>
+        <label for="field_squares">الساحات والدورات</label>
+        <select id="field_squares"><option value="">— اختر —</option><option value="جيد جداً">جيد جداً</option><option value="جيد">جيد</option><option value="متوسط">متوسط</option><option value="سيئ">سيئ</option><option value="سيئ جداً">سيئ جداً</option></select>
+      </div><div><label for="field_shade_ratio">نسبة الظل (%)</label>
+        <input id="field_shade_ratio" type="number" min="0" step="1" inputmode="numeric"></div><div>
+        <label for="field_إمكانية_التشجير">إمكانية التشجير</label>
+        <select id="field_إمكانية_التشجير"><option value="">— اختر —</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+      </div><div>
+        <label for="field_هل_التشجير_يعيق_الرؤية_المرورية">هل التشجير يعيق الرؤية المرورية</label>
+        <select id="field_هل_التشجير_يعيق_الرؤية_المرورية"><option value="">— اختر —</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+      </div><div>
+        <label for="field_هل_يصل_التشجير_إلى_الاسلاك_الكهربائية">هل يصل التشجير إلى الاسلاك الكهربائية</label>
+        <select id="field_هل_يصل_التشجير_إلى_الاسلاك_الكهربائية"><option value="">— اختر —</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+      </div><div>
+        <label for="field_هل_يعيق_التشجير_حركةالمرور_والمشاة">هل يعيق التشجير حركةالمرور والمشاة</label>
+        <select id="field_هل_يعيق_التشجير_حركةالمرور_والمشاة"><option value="">— اختر —</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+      </div><div>
+        <label for="field_هل_التشجير_يضربالبنية_التحتية">هل التشجير يضربالبنية التحتية</label>
+        <select id="field_هل_التشجير_يضربالبنية_التحتية"><option value="">— اختر —</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+      </div><div>
+        <label for="field_هل_التشجير_يجذب_الحشرات">هل التشجير يجذب الحشرات</label>
+        <select id="field_هل_التشجير_يجذب_الحشرات"><option value="">— اختر —</option><option value="نعم">نعم</option><option value="لا">لا</option></select>
+      </div><div><label for="field_ملاحظات_حول_المساحات_الخضراء">ملاحظات حول المساحات الخضراء</label>
+        <textarea id="field_ملاحظات_حول_المساحات_الخضراء" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="services">
+      <h2>٨. الخدمات والمرافق العامة</h2>
+      <div class="grid">
+        <div>
+        <label for="field_public_toilets">دورات المياه العامة</label>
+        <select id="field_public_toilets"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_benches">مقاعد الجلوس</label>
+        <select id="field_benches"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_ev_charging">نقاط شحن كهربائي</label>
+        <select id="field_ev_charging"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_kiosks">الأكشاك التجارية العشوائية</label>
+        <select id="field_kiosks"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_bus_stops">مواقف الباصات</label>
+        <select id="field_bus_stops"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_public_wifi">شبكة واي فاي عامة</label>
+        <select id="field_public_wifi"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_shelters">المظلات العامة</label>
+        <select id="field_shelters"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div><label for="field_services_notes">ملاحظات حول الخدمات والمرافق العامة</label>
+        <textarea id="field_services_notes" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="networks">
+      <h2>٩. الشبكات والخدمات</h2>
+      <div class="grid">
+        <div>
+        <label for="field_sewage">شبكة الصرف الصحي</label>
+        <select id="field_sewage"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_water_network">شبكة المياه</label>
+        <select id="field_water_network"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_power_network">شبكة الكهرباء</label>
+        <select id="field_power_network"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_telecom">شبكة الاتصالات/الألياف</label>
+        <select id="field_telecom"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div>
+        <label for="field_power_poles">توزيع الكهرباء</label>
+        <select id="field_power_poles"><option value="">— اختر —</option><option value="أعمدة الكهرباء">أعمدة الكهرباء</option><option value="كبلات أرضية">كبلات أرضية</option></select>
+      </div><div>
+        <label for="field_manholes">فتحات التفتيش</label>
+        <select id="field_manholes"><option value="">— اختر —</option><option value="يوجد">يوجد</option><option value="لا يوجد">لا يوجد</option></select>
+      </div><div><label for="field_networks_notes">ملاحظات حول الشبكات والخدمات</label>
+        <textarea id="field_networks_notes" rows="2"></textarea></div>
+      </div>
+    </section><section data-sec="priority">
+      <h2>١٠. أولوية التدخل والملاحظات</h2>
+      <div class="grid">
+        <div>
+        <label for="field_priority">أولوية التدخل</label>
+        <select id="field_priority"><option value="">— اختر —</option><option value="عالية">عالية</option><option value="متوسطة">متوسطة</option><option value="منخفضة">منخفضة</option></select>
+      </div><div><label for="field_notes">ملاحظات إضافية</label>
+        <textarea id="field_notes" rows="2"></textarea></div>
+      </div>
+    </section><section style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <button class="btn btn-ok" type="button" onclick="saveRecord()" style="flex:1;min-width:150px;">
+      💾 حفظ المقطع
+    </button>
+    <button class="btn btn-ghost" type="button" onclick="clearFormButton()" style="flex:1;min-width:150px;">
+      ↺ تفريغ النموذج
+    </button>
+  </section></div>
+
+  <section>
+    <h2>السجل المحلي <span id="count" class="chip">1</span></h2>
+    <p style="font-size:12px;color:var(--muted);margin:0 0 10px;">
+      💡 اضغط على أي سجل لعرضه وتعديله.
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>#</th><th>القطاع</th><th>الحي</th><th>نوع الشارع</th>
+              <th>الأولوية</th><th>إجراء</th></tr>
+        </thead>
+        <tbody id="recordsBody"><tr class="rec-row" onclick="loadRecord(1791265273626)">
+      <td>1</td>
+      <td>غربي</td>
+      <td>مسكن</td>
+      <td>رئيسيّ</td>
+      <td><span class="pill pill-low">منخفضة</span></td>
+      <td>
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); deleteRecord(1791265273626)">
+          حذف
+        </button>
+      </td>
+    </tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<div class="toolbar">
+  <button class="btn btn-primary" onclick="exportXLSX()">⬇ تصدير Excel</button>
+  <button class="btn btn-ghost" onclick="exportCSV()">⬇ CSV</button>
+  <button class="btn btn-ghost" onclick="exportJSON()">🗄 نسخة احتياطية</button>
+  <button class="btn btn-warn" onclick="importJSON()">⬆ استيراد</button>
+</div>
+
+<div id="settingsModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>⚙ إدارة الأقسام والحقول</h2>
+      <button class="btn btn-ghost btn-sm" onclick="closeSettings()">✕ إغلاق</button>
+    </div>
+
+    <p class="hint">
+      أضف، عدّل، أو احذف الأقسام والحقول. تُحفظ التغييرات تلقائياً.
+    </p>
+
+    <div id="schemaList"></div>
+
+    <div class="add-form" id="fieldForm">
+      <h3 id="fieldFormTitle">➕ إضافة حقل جديد</h3>
+      <div class="row-flex">
+        <div>
+          <label>القسم</label>
+          <select id="newFieldSection"></select>
+        </div>
+        <div>
+          <label>اسم الحقل (بالعربية)</label>
+          <input id="newFieldLabel" placeholder="مثال: عدد الحاويات">
+        </div>
+        <div>
+          <label>نوع الحقل</label>
+          <select id="newFieldType">
+            <option value="text">نص</option>
+            <option value="integer">رقم صحيح (بدون فاصلة)</option>
+            <option value="number">رقم عشري</option>
+            <option value="select">قائمة منسدلة</option>
+            <option value="scale">مقياس (جيد جداً ... سيئ جداً)</option>
+            <option value="scale_ext">مقياس موسّع (+لا يوجد/لا ينطبق)</option>
+            <option value="yesno">يوجد / لا يوجد</option>
+            <option value="date">تاريخ</option>
+            <option value="textarea">نص طويل</option>
+          </select>
+        </div>
+        <div>
+          <label>مطلوب؟</label>
+          <select id="newFieldRequired">
+            <option value="false">لا</option>
+            <option value="true">نعم</option>
+          </select>
+        </div>
+      </div>
+      <div id="optionsWrap" style="display:none;margin-top:8px;">
+        <label>خيارات القائمة (سطر لكل خيار)</label>
+        <textarea id="newFieldOptions" rows="4" placeholder="خيار١
+خيار٢
+خيار٣"></textarea>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button class="btn btn-ok" id="addFieldBtn" onclick="addNewField()">إضافة الحقل</button>
+        <button class="btn btn-ghost" id="cancelEditBtn" style="display:none;" onclick="cancelFieldEdit()">إلغاء التعديل</button>
+      </div>
+    </div>
+
+    <div class="add-form" id="sectionForm" style="background:#fff7ed;border-color:var(--warn);">
+      <h3 id="sectionFormTitle">➕ إضافة قسم جديد</h3>
+      <div class="row-flex">
+        <div>
+          <label>عنوان القسم</label>
+          <input id="newSectionTitle" placeholder="مثال: ١٠. مؤشرات إضافية">
+        </div>
+        <div style="flex:0 0 auto;display:flex;gap:6px;">
+          <button class="btn btn-warn" id="addSectionBtn" onclick="addNewSection()">إضافة القسم</button>
+          <button class="btn btn-ghost" id="cancelSectionBtn" style="display:none;" onclick="cancelSectionEdit()">إلغاء</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pw-card">
+      <h4>🔑 تغيير كلمة سر الإدارة</h4>
+      <input id="currentPw" type="password" placeholder="كلمة السر الحالية" inputmode="numeric" autocomplete="off">
+      <input id="newPw" type="password" placeholder="كلمة السر الجديدة" inputmode="numeric" autocomplete="off">
+      <input id="newPwConfirm" type="password" placeholder="تأكيد كلمة السر الجديدة" inputmode="numeric" autocomplete="off">
+      <div id="pwChangeMsg" style="font-size:12px;min-height:18px;margin:4px 0;"></div>
+      <button class="btn btn-primary btn-sm" onclick="changePassword()" style="width:100%;">
+        💾 حفظ كلمة السر الجديدة
+      </button>
+    </div>
+
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;
+      border-top:1px solid var(--border);padding-top:12px;">
+      <button class="btn btn-ghost" onclick="exportSchema()">⬇ تصدير المخطط</button>
+      <button class="btn btn-ghost" onclick="importSchema()">⬆ استيراد المخطط</button>
+      <button class="btn btn-warn" onclick="resetSchema()">↺ استعادة الحقول الافتراضية</button>
+      <button class="btn btn-danger" onclick="wipeRecords()">🗑 مسح كل السجلات</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* =========================================================
+   1) قوائم موحّدة
+   ========================================================= */
+const SCALE = ["جيد جداً","جيد","متوسط","سيئ","سيئ جداً"];
+const SCALE_EXT = ["جيد جداً","جيد","متوسط","سيئ","سيئ جداً","لا يوجد","لا ينطبق"];
+const YESNO = ["يوجد","لا يوجد"];
+
+/* =========================================================
+   كلمة سر الإدارة
+   ========================================================= */
+const PASSWORD_KEY = "salamieh_admin_password";
+const DEFAULT_PASSWORD = "11223344";
+
+function getAdminPassword(){
+  return localStorage.getItem(PASSWORD_KEY) || DEFAULT_PASSWORD;
+}
+function setAdminPassword(pw){
+  localStorage.setItem(PASSWORD_KEY, pw);
+}
+
+function scaleField(id,label,required=false){
+  return { id, label, type:"scale", required, options:SCALE.slice() };
+}
+function extField(id,label,required=false){
+  return { id, label, type:"scale_ext", required, options:SCALE_EXT.slice() };
+}
+function yesnoField(id,label,required=false){
+  return { id, label, type:"yesno", required, options:YESNO.slice() };
+}
+function selField(id,label,options,required=false){
+  return { id, label, type:"select", required, options:options.slice() };
+}
+function txtField(id,label,required=false){
+  return { id, label, type:"text", required };
+}
+function intField(id,label,required=false){
+  return { id, label, type:"integer", required };
+}
+function numField(id,label,required=false){
+  return { id, label, type:"number", required };
+}
+function areaField(id,label,required=false){
+  return { id, label, type:"textarea", required };
+}
+
+/* =========================================================
+   2) المخطط الافتراضي (v3)
+   ========================================================= */
+const DEFAULT_SCHEMA = {
+  version: 3,
+  sections: [
+    {
+      id:"gis", title:"١. بيانات الموقع (GIS)",
+      fields:[
+        txtField("sector","القطاع"),
+        txtField("neighborhood","الحي"),
+        txtField("street_name","اسم الشارع"),
+        txtField("start_point","نقطة البداية"),
+        txtField("end_point","نقطة النهاية"),
+        txtField("street_no","رقم الشارع"),
+        selField("street_type","نوع الشارع",
+          ["رئيسيّ","ثانويّ","تجاريّ","سكنيّ","مختلط"]),
+        { id:"survey_date", label:"تاريخ المسح", type:"date" },
+        { id:"gps", label:"إحداثيات GPS (نقطة البداية)", type:"gps" },
+        { id:"photo", label:"صورة المقطع", type:"photo" },
+        txtField("survey_team","فريق المسح"),
+        areaField("gis_notes","ملاحظات بيانات الموقع")
+      ]
+    },
+    {
+      id:"sensitivity", title:"٢. الحساسية وكثافة الحركة",
+      fields:[
+        selField("sensitivity","حساسية الموقع",["عالي","متوسط","منخفض"]),
+        selField("sensitivity_reason","سبب الحساسية",
+          ["مدرسة","مشفى","سوق","مركز حكومي","معلم تاريخي","ساحة عامة",
+           "مسجد","منطقة سياحية","أخرى"]),
+        selField("traffic","كثافة الحركة",["عالي","متوسط","منخفض"]),
+        areaField("sensitivity_notes","ملاحظات حول الحساسية")
+      ]
+    },
+    {
+      id:"infra", title:"٣. البنية التحتية",
+      fields:[
+        scaleField("pavement","حالة الرصف"),
+        numField("damaged_area","مساحة الإسفلت المتضررة (م²)"),
+        scaleField("sidewalk","حالة الأرصفة"),
+        numField("damaged_sidewalk","طول الأرصفة المتضررة (م)"),
+        scaleField("lighting","جودة الإنارة"),
+        scaleField("drainage","تصريف مياه الأمطار"),
+        scaleField("curbs","حالة الأرصفة الجانبية (الحدود)"),
+        areaField("infra_notes","ملاحظات حول البنية التحتية")
+      ]
+    },
+    {
+      id:"visual", title:"٤. الهوية البصرية والفن العام",
+      fields:[
+        scaleField("aesthetics","الجمالية البصرية"),
+        scaleField("facades","حالة الواجهات"),
+        scaleField("ads","حالة الإعلانات"),
+        scaleField("murals","الجداريات والفن العام"),
+        scaleField("deco_light","الإنارة الجمالية"),
+        scaleField("visual_pollution","التلوث البصري"),
+        scaleField("signage","اللافتات الإرشادية"),
+        areaField("visual_notes","ملاحظات عن الهوية البصرية")
+      ]
+    },
+    {
+      id:"cleaning", title:"٥. النظافة",
+      fields:[
+        scaleField("cleanness","نظافة الشارع"),
+        intField("bins_avail","عدد الحاويات المتوفرة"),
+        intField("bins_240","حاويات 240 لتر المطلوبة"),
+        intField("bins_big","الحاويات الكبيرة المطلوبة"),
+        scaleField("air","جودة الهواء والروائح"),
+        selField("waste","مخلفات بناء ونفايات",
+          ["لا يوجد","يوجد قليلاً","يوجد كثيراً"]),
+        selField("cleaning_frequency","الفترة الدورية للتنظيف",
+          ["يومياً","أسبوعياً","شهرياً","نادراً","لا يوجد"]),
+        areaField("cleaning_notes","ملاحظات عن النظافة")
+      ]
+    },
+    {
+      id:"urban", title:"٦. المؤشرات الحضرية والبيئية",
+      fields:[
+        scaleField("pedestrian","سلامة المشاة"),
+        scaleField("access","إمكانية الوصول"),
+        scaleField("noise_level","مستوى الضوضاء"),
+        scaleField("night","الأمان الليلي"),
+        extField("bike_lanes","مسارات الدراجات الهوائية"),
+        scaleField("speed_bumps","المطبات"),
+        scaleField("parked_cars","ازدحام السيارات المركونة"),
+        scaleField("emissions","الانبعاثات وعوادم المركبات"),
+        selField("pedestrian_density","كثافة المشاة",
+          ["عالية","متوسطة","منخفضة","لا يوجد"]),
+        scaleField("dust","الغبار والأتربة"),
+        scaleField("ada_ramps","منحدرات ذوي الاحتياجات"),
+        areaField("urban_notes","ملاحظات المؤشرات الحضرية والبيئية")
+      ]
+    },
+    {
+      id:"green", title:"٧. المساحات الخضراء",
+      fields:[
+        selField("tree_density","كثافة الأشجار",
+          ["عالية","متوسطة","منخفضة","لا يوجد"]),
+        scaleField("tree_quality","جودة التشجير"),
+        scaleField("irrigation","الري"),
+        scaleField("shade","الظلال"),
+        scaleField("parks","الحدائق"),
+        scaleField("squares","الساحات والدورات"),
+        numField("shade_ratio","نسبة الظل (%)"),
+        areaField("green_notes","ملاحظات حول المساحات الخضراء")
+      ]
+    },
+    {
+      id:"services", title:"٨. الخدمات والمرافق العامة",
+      fields:[
+        yesnoField("public_toilets","دورات المياه العامة"),
+        yesnoField("benches","مقاعد الجلوس"),
+        yesnoField("ev_charging","نقاط شحن كهربائي"),
+        yesnoField("kiosks","الأكشاك التجارية العشوائية"),
+        yesnoField("bus_stops","مواقف الباصات"),
+        yesnoField("public_wifi","شبكة واي فاي عامة"),
+        yesnoField("shelters","المظلات العامة"),
+        areaField("services_notes","ملاحظات حول الخدمات والمرافق العامة")
+      ]
+    },
+    {
+      id:"networks", title:"٩. الشبكات والخدمات",
+      fields:[
+        yesnoField("sewage","شبكة الصرف الصحي"),
+        scaleField("water_network","شبكة المياه"),
+        scaleField("power_network","شبكة الكهرباء"),
+        scaleField("telecom","شبكة الاتصالات/الألياف"),
+        scaleField("power_poles","أعمدة الكهرباء"),
+        scaleField("street_water","تسربات المياه"),
+        scaleField("manholes","فتحات التفتيش (المنهولات)"),
+        areaField("networks_notes","ملاحظات حول الشبكات والخدمات")
+      ]
+    },
+    {
+      id:"priority", title:"١٠. أولوية التدخل والملاحظات",
+      fields:[
+        selField("priority","أولوية التدخل",["عالية","متوسطة","منخفضة"]),
+        areaField("notes","ملاحظات إضافية")
+      ]
+    }
+  ]
+};
+
+/* =========================================================
+   3) تحميل/حفظ المخطط والسجلات
+   ========================================================= */
+const SCHEMA_KEY = "salamieh_survey_schema_v3";
+const RECORDS_KEY = "salamieh_survey_records_v2";
+
+function loadSchema(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SCHEMA_KEY));
+    if(s && Array.isArray(s.sections) && s.sections.length) return s;
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_SCHEMA));
+}
+function saveSchema(s){ localStorage.setItem(SCHEMA_KEY, JSON.stringify(s)); }
+
+function getRecords(){
+  try{ return JSON.parse(localStorage.getItem(RECORDS_KEY)) || []; }
+  catch(e){ return []; }
+}
+function setRecords(a){ localStorage.setItem(RECORDS_KEY, JSON.stringify(a)); }
+
+let SCHEMA = loadSchema();
+let editingRecordId = null;
+
+/* =========================================================
+   4) عرض النموذج ديناميكياً
+   ========================================================= */
+function fieldDomId(fid){ return "field_" + fid; }
+
+function renderForm(){
+  const cont = document.getElementById("formContainer");
+  cont.innerHTML = SCHEMA.sections.map(sec => {
+    return `<section data-sec="${sec.id}">
+      <h2>${esc(sec.title)}</h2>
+      <div class="grid">
+        ${sec.fields.map(f => renderField(f)).join("")}
+      </div>
+    </section>`;
+  }).join("");
+
+  SCHEMA.sections.forEach(sec => {
+    sec.fields.forEach(f => {
+      if(f.type === "gps"){
+        const btn = document.getElementById("gpsBtn_" + f.id);
+        if(btn) btn.onclick = () => getGPS(f.id);
+      }
+      if(f.type === "photo"){
+        const inp = document.getElementById(fieldDomId(f.id));
+        if(inp) inp.onchange = ev => previewPhoto(ev, f.id);
+      }
+    });
+  });
+
+  const d = document.getElementById("field_survey_date");
+  if(d && !d.value) d.value = new Date().toISOString().slice(0,10);
+}
+
+function renderField(f){
+  const id = fieldDomId(f.id);
+  const req = f.required ? ' <span class="req">*</span>' : "";
+  const labelHtml = `<label for="${id}">${esc(f.label)}${req}</label>`;
+
+  switch(f.type){
+    case "gps":
+      return `<div>
+        ${labelHtml}
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <input id="${id}" placeholder="خط العرض, خط الطول" readonly
+            style="flex:1;min-width:180px;">
+          <button class="btn btn-ghost" type="button"
+            id="gpsBtn_${f.id}">📍 GPS</button>
+          <button class="btn btn-ghost btn-sm" type="button"
+            onclick="openManualGPS('${f.id}')"
+            title="إدخال يدوي">✏️ يدوي</button>
+          <button class="btn btn-ghost btn-sm" type="button"
+            onclick="openGoogleMaps()"
+            title="فتح Google Maps">🗺️</button>
+        </div>
+      </div>`;
+
+    case "photo":
+      return `<div>
+        ${labelHtml}
+        <input id="${id}" type="file" accept="image/*" capture="environment">
+        <img id="preview_${f.id}" class="photo-preview" alt="">
+        <div class="photo-info" id="photoInfo_${f.id}"></div>
+      </div>`;
+
+    case "select":
+    case "scale":
+    case "scale_ext":
+    case "yesno": {
+      const opts = (f.options || []).map(o =>
+        `<option value="${esc(o)}">${esc(o)}</option>`).join("");
+      return `<div>
+        ${labelHtml}
+        <select id="${id}"><option value="">— اختر —</option>${opts}</select>
+      </div>`;
+    }
+
+    case "integer":
+      return `<div>${labelHtml}
+        <input id="${id}" type="number" min="0" step="1" inputmode="numeric"></div>`;
+
+    case "number":
+      return `<div>${labelHtml}
+        <input id="${id}" type="number" min="0" step="0.1"></div>`;
+
+    case "date":
+      return `<div>${labelHtml}<input id="${id}" type="date"></div>`;
+
+    case "textarea":
+      return `<div>${labelHtml}
+        <textarea id="${id}" rows="2"></textarea></div>`;
+
+    default:
+      return `<div>${labelHtml}<input id="${id}" type="text"></div>`;
+  }
+}
+
+/* =========================================================
+   5) أدوات عامة
+   ========================================================= */
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove("show"), 3500);
+}
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g,
+    c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function slug(s){
+  return String(s).trim().toLowerCase()
+    .replace(/[^\w\u0600-\u06FF]+/g,"_")
+    .replace(/^_+|_+$/g,"")
+    .slice(0,40) || ("f_" + Date.now());
+}
+
+/* =========================================================
+   6) GPS + صورة + ضغط الصور
+   ========================================================= */
+function getGPS(fid){
+  if(!window.isSecureContext){
+    toast("⚠ المتصفح يمنع GPS على هذا الرابط (http). استخدم الإدخال اليدوي.");
+    setTimeout(() => showGPSHelp(fid), 600);
+    return;
+  }
+
+  if(!navigator.geolocation){
+    toast("⚠ المتصفح لا يدعم GPS");
+    setTimeout(() => showGPSHelp(fid), 600);
+    return;
+  }
+
+  toast("⏳ جارٍ تحديد الموقع...");
+
+  const timeout = setTimeout(() => {
+    toast("⚠ استغرق الأمر وقتاً طويلاً. جرّب الإدخال اليدوي.");
+  }, 20000);
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      clearTimeout(timeout);
+      const lat = pos.coords.latitude.toFixed(6);
+      const lng = pos.coords.longitude.toFixed(6);
+      const acc = Math.round(pos.coords.accuracy);
+
+      document.getElementById(fieldDomId(fid)).value = lat + ", " + lng;
+
+      if(acc <= 20){
+        toast("✅ تم التقاط الموقع بدقة " + acc + "م");
+      } else if(acc <= 100){
+        toast("✅ تم التقاط الموقع (دقة متوسطة: " + acc + "م)");
+      } else {
+        toast("⚠ الموقع تقريبي (دقة: " + acc + "م)");
+      }
+    },
+    err => {
+      clearTimeout(timeout);
+      let msg = "⚠ تعذّر تحديد الموقع: ";
+      switch(err.code){
+        case 1:
+          msg += "المتصفح رفض الطلب. اسمح بالصلاحية.";
+          break;
+        case 2:
+          msg += "الإشارة غير متوفرة. اخرج لمكان مفتوح.";
+          break;
+        case 3:
+          msg += "انتهت المدة. جرّب مجدداً.";
+          break;
+        default:
+          msg += err.message;
+      }
+      toast(msg);
+      setTimeout(() => showGPSHelp(fid), 1200);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 20000,
+      maximumAge: 0
+    }
+  );
+}
+
+/* ============ التقاط الصورة + الضغط التلقائي ============ */
+function previewPhoto(ev, fid){
+  const file = ev.target.files[0];
+  const img = document.getElementById("preview_" + fid);
+  const info = document.getElementById("photoInfo_" + fid);
+
+  if(!file){
+    img.style.display = "none";
+    if(info){ info.classList.remove("show"); info.textContent = ""; }
+    ev.target._dataUrl = "";
+    return;
+  }
+
+  toast("⏳ جارٍ معالجة الصورة...");
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const originalDataUrl = e.target.result;
+    const originalSize = file.size;
+
+    const tempImg = new Image();
+    tempImg.onload = () => {
+      const compressed = compressImage(tempImg, originalSize);
+
+      img.src = compressed;
+      img.style.display = "block";
+      img.dataset.dataUrl = compressed;
+      ev.target._dataUrl = compressed;
+
+      // حساب الحجم التقريبي
+      const compressedSize = Math.round(compressed.length * 0.75);
+      const saved = Math.max(0, Math.round((1 - compressedSize / originalSize) * 100));
+
+      const origKB = Math.round(originalSize / 1024);
+      const compKB = Math.round(compressedSize / 1024);
+
+      if(info){
+        if(saved > 5){
+          info.textContent = "📷 " + origKB + " KB ← " + compKB +
+            " KB (توفير " + saved + "%)";
+        } else {
+          info.textContent = "📷 " + compKB + " KB";
+        }
+        info.classList.add("show");
+      }
+
+      if(saved > 5){
+        toast("✅ تم ضغط الصورة: " + origKB + "KB ← " + compKB + "KB (توفير " + saved + "%)");
+      } else {
+        toast("✅ تم حفظ الصورة (" + compKB + "KB)");
+      }
+    };
+    tempImg.onerror = () => {
+      toast("⚠ تعذّر معالجة الصورة، احتفظ بالأصل");
+      img.src = originalDataUrl;
+      img.style.display = "block";
+      ev.target._dataUrl = originalDataUrl;
+      if(info){
+        info.textContent = "📷 " + Math.round(originalSize / 1024) + " KB";
+        info.classList.add("show");
+      }
+    };
+    tempImg.src = originalDataUrl;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ============ محرك ضغط الصور ============ */
+function compressImage(sourceImg, originalSize){
+  // الحد الأقصى للبعد الأطول (بالبكسل)
+  const MAX_DIM = 1280;
+  // جودة الصورة (0 إلى 1)
+  const QUALITY = 0.72;
+
+  let w = sourceImg.width;
+  let h = sourceImg.height;
+
+  // إذا كانت الصورة صغيرة أصلاً، لا حاجة للضغط
+  if(w <= MAX_DIM && h <= MAX_DIM && originalSize < 300 * 1024){
+    return sourceImg.src;
+  }
+
+  // تصغير الأبعاد مع الحفاظ على النسبة
+  if(w > h && w > MAX_DIM){
+    h = Math.round(h * MAX_DIM / w);
+    w = MAX_DIM;
+  } else if(h > MAX_DIM){
+    w = Math.round(w * MAX_DIM / h);
+    h = MAX_DIM;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+
+  const ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(sourceImg, 0, 0, w, h);
+
+  // تجربة WebP أولاً (أصغر بـ 25-35% من JPEG)
+  let dataUrl;
+  try{
+    dataUrl = canvas.toDataURL("image/webp", QUALITY);
+    if(dataUrl.indexOf("image/png") === 0){
+      dataUrl = canvas.toDataURL("image/jpeg", QUALITY);
+    }
+  }catch(e){
+    dataUrl = canvas.toDataURL("image/jpeg", QUALITY);
+  }
+
+  return dataUrl;
+}
+
+/* ============ نافذة مساعدة GPS ============ */
+function showGPSHelp(fid){
+  const existing = document.getElementById("gpsHelpModal");
+  if(existing) existing.remove();
+
+  const isSecure = window.isSecureContext;
+  const helpDiv = document.createElement("div");
+  helpDiv.id = "gpsHelpModal";
+  helpDiv.className = "gps-help";
+
+  helpDiv.innerHTML = `
+    <div class="gps-help-box">
+      <h3 style="color:#1d6fb8;text-align:center;">📍 تعذّر التقاط الموقع</h3>
+
+      <div style="background:#fff7ed;border-right:4px solid #d97706;
+        padding:10px 12px;border-radius:6px;margin-bottom:14px;
+        font-size:13px;color:#7c2d12;line-height:1.6;">
+        <strong>السبب:</strong>
+        ${isSecure
+          ? "المتصفح رفض صلاحية الموقع، أو أن الإشارة ضعيفة."
+          : "المتصفح يمنع GPS على هذا الرابط لأنه غير آمن (http)."}
+      </div>
+
+      <p style="font-size:13px;margin:0 0 10px;color:#374151;
+        text-align:center;font-weight:700;">اختر أحد الحلول:</p>
+
+      <button class="gps-help-btn"
+        style="background:#2e9e5b;color:#fff;"
+        onclick="openManualGPS('${fid}')">
+        ✏️ إدخال الإحداثيات يدوياً
+      </button>
+
+      <button class="gps-help-btn"
+        style="background:#1d6fb8;color:#fff;"
+        onclick="openGoogleMaps()">
+        🗺️ فتح Google Maps لتحديد الموقع
+      </button>
+
+      ${!isSecure ? `
+      <button class="gps-help-btn"
+        style="background:#d97706;color:#fff;font-size:13px;"
+        onclick="showChromeFlagHelp()">
+        ⚙️ حل دائم: تفعيل GPS في Chrome
+      </button>
+      ` : `
+      <button class="gps-help-btn"
+        style="background:#d97706;color:#fff;font-size:13px;"
+        onclick="showPermissionHelp()">
+        ⚙️ كيف أسمح بالموقع في Chrome؟
+      </button>
+      `}
+
+      <button class="gps-help-btn"
+        style="background:#eef2f7;color:#374151;font-size:13px;"
+        onclick="document.getElementById('gpsHelpModal').remove()">
+        إغلاق
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(helpDiv);
+}
+
+function openManualGPS(fid){
+  const existing = document.getElementById("gpsHelpModal");
+  if(existing) existing.remove();
+
+  const current = document.getElementById(fieldDomId(fid)).value;
+  const val = prompt(
+    "أدخل الإحداثيات بصيغة:\nخط العرض, خط الطول\n\n" +
+    "مثال:\n35.123456, 36.123456",
+    current || ""
+  );
+
+  if(val === null) return;
+
+  const trimmed = val.trim();
+  if(!trimmed){
+    toast("لم تُدخل أي إحداثيات");
+    return;
+  }
+
+  const match = trimmed.match(/^(-?\d+(?:\.\d+)?)[,\s]+(-?\d+(?:\.\d+)?)$/);
+  if(!match){
+    alert("الصيغة غير صحيحة.\n\nيجب أن تكون:\nخط العرض, خط الطول\n\nمثال:\n35.123456, 36.123456");
+    return;
+  }
+
+  const lat = parseFloat(match[1]);
+  const lng = parseFloat(match[2]);
+
+  if(lat < -90 || lat > 90){
+    alert("خط العرض يجب أن يكون بين -90 و 90");
+    return;
+  }
+  if(lng < -180 || lng > 180){
+    alert("خط الطول يجب أن يكون بين -180 و 180");
+    return;
+  }
+
+  document.getElementById(fieldDomId(fid)).value =
+    lat.toFixed(6) + ", " + lng.toFixed(6);
+
+  toast("✅ تم إدخال الإحداثيات يدوياً");
+}
+
+function openGoogleMaps(){
+  const modal = document.getElementById("gpsHelpModal");
+  if(modal) modal.remove();
+
+  const fallbackLat = 35.0116;
+  const fallbackLng = 37.0530;
+  const url = `https://www.google.com/maps/@${fallbackLat},${fallbackLng},15z`;
+
+  window.open(url, "_blank");
+
+  setTimeout(() => {
+    alert(
+      "خطوات الحصول على الإحداثيات من Google Maps:\n\n" +
+      "1. اضغط مطولاً على موقعك في الخريطة\n" +
+      "2. ستظهر قائمة سفلية بالموقع\n" +
+      "3. اضغط 'مشاركة' ثم 'نسخ'\n" +
+      "4. أو انسخ الأرقام التي تظهر\n" +
+      "5. ارجع للتطبيق\n" +
+      "6. اضغط زر ✏️ يدوي\n" +
+      "7. الصق الإحداثيات\n\n" +
+      "الصيغة المقبولة:\n35.123456, 36.123456"
+    );
+  }, 500);
+}
+
+function showChromeFlagHelp(){
+  const modal = document.getElementById("gpsHelpModal");
+  if(modal) modal.remove();
+
+  const origin = window.location.origin;
+  const helpDiv = document.createElement("div");
+  helpDiv.id = "gpsHelpModal";
+  helpDiv.className = "gps-help";
+
+  helpDiv.innerHTML = `
+    <div class="gps-help-box">
+      <h3 style="color:#d97706;text-align:center;">⚙️ تفعيل GPS في Chrome</h3>
+
+      <p style="font-size:13px;color:#374151;line-height:1.6;margin:0 0 10px;">
+        اتبع الخطوات مرة واحدة فقط:
+      </p>
+
+      <div style="background:#f7f9fc;padding:12px;border-radius:8px;
+        font-size:13px;line-height:1.9;color:#1f2937;
+        border:1px solid #dfe4ec;">
+        <strong>1.</strong> افتح تبويب Chrome جديد<br>
+        <strong>2.</strong> اكتب في شريط العنوان:<br>
+        <span class="gps-code">chrome://flags/#unsafely-treat-insecure-origin-as-secure</span><br>
+        <strong>3.</strong> الصق العنوان التالي في المربع:<br>
+        <span class="gps-code" style="background:#2e9e5b;">${origin}</span><br>
+        <strong>4.</strong> غيّر الحالة إلى <strong>Enabled</strong><br>
+        <strong>5.</strong> اضغط <strong>Relaunch</strong> في الأسفل<br>
+        <strong>6.</strong> ارجع للتطبيق واختبر GPS
+      </div>
+
+      <button class="gps-help-btn"
+        style="background:#2e9e5b;color:#fff;margin-top:12px;"
+        onclick="copyText('${origin}')">
+        📋 نسخ عنوان الخادم
+      </button>
+
+      <button class="gps-help-btn"
+        style="background:#eef2f7;color:#374151;font-size:13px;"
+        onclick="document.getElementById('gpsHelpModal').remove()">
+        إغلاق
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(helpDiv);
+}
+
+function copyText(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(() => {
+      toast("✅ تم النسخ: " + text);
+    }).catch(() => {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try{
+    document.execCommand("copy");
+    toast("✅ تم النسخ: " + text);
+  }catch(e){
+    toast("تعذّر النسخ. انسخ يدوياً: " + text);
+  }
+  document.body.removeChild(ta);
+}
+
+function showPermissionHelp(){
+  const modal = document.getElementById("gpsHelpModal");
+  if(modal) modal.remove();
+
+  const helpDiv = document.createElement("div");
+  helpDiv.id = "gpsHelpModal";
+  helpDiv.className = "gps-help";
+
+  helpDiv.innerHTML = `
+    <div class="gps-help-box">
+      <h3 style="color:#d97706;text-align:center;">⚙️ كيف أسمح بالموقع؟</h3>
+
+      <div style="background:#f7f9fc;padding:12px;border-radius:8px;
+        font-size:13px;line-height:1.9;color:#1f2937;">
+        <strong>من إعدادات Chrome:</strong><br>
+        1. افتح Chrome<br>
+        2. اضغط ⋮ → الإعدادات<br>
+        3. إعدادات المواقع → الموقع<br>
+        4. اسمح بالموقع لهذا الرابط<br><br>
+
+        <strong>من إعدادات الهاتف:</strong><br>
+        1. الإعدادات → التطبيقات<br>
+        2. Chrome → الصلاحيات<br>
+        3. الموقع → السماح دائماً
+      </div>
+
+      <button class="gps-help-btn"
+        style="background:#eef2f7;color:#374151;font-size:13px;margin-top:12px;"
+        onclick="document.getElementById('gpsHelpModal').remove()">
+        إغلاق
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(helpDiv);
+}
+
+/* =========================================================
+   7) الأولوية التلقائية
+   ========================================================= */
+function computePriority(r){
+  let score = 0;
+  const bad = ["سيئ","سيئ جداً"];
+  const check = (key, w) => { if(bad.includes(r[key])) score += w; };
+  check("pavement",2); check("sidewalk",1); check("lighting",1);
+  check("cleanness",1); check("drainage",1);
+  if(r.sensitivity === "عالي") score += 2;
+  else if(r.sensitivity === "متوسط") score += 1;
+  if(r.traffic === "عالي") score += 2;
+  else if(r.traffic === "متوسط") score += 1;
+  if(r.waste === "يوجد كثيراً") score += 2;
+  else if(r.waste === "يوجد قليلاً") score += 1;
+  if(r.sewage === "لا يوجد") score += 1;
+  if(score >= 8) return "عالية";
+  if(score >= 4) return "متوسطة";
+  return "منخفضة";
+}
+
+/* =========================================================
+   8) جمع/حفظ/تفريغ
+   ========================================================= */
+function collectForm(){
+  const r = {};
+  SCHEMA.sections.forEach(sec => {
+    sec.fields.forEach(f => {
+      const el = document.getElementById(fieldDomId(f.id));
+      if(!el) return;
+      if(f.type === "photo"){
+        r[f.id] = el._dataUrl || "";
+      } else {
+        r[f.id] = (el.value || "").trim();
+      }
+    });
+  });
+  return r;
+}
+
+function restoreForm(data){
+  SCHEMA.sections.forEach(sec => {
+    sec.fields.forEach(f => {
+      const el = document.getElementById(fieldDomId(f.id));
+      if(!el || !data) return;
+      const v = data[f.id];
+      if(v == null) return;
+      if(f.type === "photo"){
+        if(v){
+          const img = document.getElementById("preview_" + f.id);
+          const info = document.getElementById("photoInfo_" + f.id);
+          if(img){ img.src = v; img.style.display = "block"; }
+          el._dataUrl = v;
+          if(info){
+            const sizeKB = Math.round(v.length * 0.75 / 1024);
+            info.textContent = "📷 " + sizeKB + " KB";
+            info.classList.add("show");
+          }
+        }
+      } else {
+        el.value = v;
+      }
+    });
+  });
+}
+
+function resetForm(){
+  SCHEMA.sections.forEach(sec => {
+    sec.fields.forEach(f => {
+      const el = document.getElementById(fieldDomId(f.id));
+      if(!el) return;
+      if(el.tagName === "SELECT") el.selectedIndex = 0;
+      else el.value = "";
+      if(f.type === "photo"){
+        const img = document.getElementById("preview_" + f.id);
+        const info = document.getElementById("photoInfo_" + f.id);
+        if(img){ img.src = ""; img.style.display = "none"; }
+        if(info){ info.classList.remove("show"); info.textContent = ""; }
+        el._dataUrl = null;
+      }
+    });
+  });
+  const d = document.getElementById("field_survey_date");
+  if(d) d.value = new Date().toISOString().slice(0,10);
+}
+
+function saveRecord(){
+  const r = collectForm();
+  if(!r.street_type){
+    toast("⚠ يرجى إدخال نوع الشارع على الأقل");
+    return;
+  }
+  if(!r.priority) r.priority = computePriority(r);
+  r._id = Date.now();
+  r._created = new Date().toISOString();
+  const recs = getRecords();
+  r.seq = recs.length + 1;
+  recs.push(r);
+  setRecords(recs);
+  renderTable();
+  toast("✅ تم حفظ المقطع رقم " + r.seq);
+  resetForm();
+}
+
+/* =========================================================
+   9) تحرير سجل موجود
+   ========================================================= */
+function loadRecord(id){
+  const recs = getRecords();
+  const r = recs.find(x => x._id === id);
+  if(!r){ toast("⚠ لم يتم العثور على السجل"); return; }
+
+  resetForm();
+  restoreForm(r);
+
+  editingRecordId = id;
+  document.getElementById("editBannerSeq").textContent = r.seq || "—";
+  document.getElementById("editBanner").classList.add("open");
+
+  const saveBtn = document.querySelector("#formContainer .btn-ok");
+  if(saveBtn){
+    saveBtn.textContent = "💾 حفظ كسجل جديد";
+    saveBtn.title = "سجّل البيانات كسجل منفصل جديد";
+  }
+
+  renderTable();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  toast("✏️ تم تحميل السجل رقم " + r.seq + " للتحرير");
+}
+
+function updateRecord(){
+  if(!editingRecordId){ toast("⚠ لا يوجد سجل قيد التحرير"); return; }
+
+  const r = collectForm();
+  if(!r.street_type){
+    toast("⚠ يرجى إدخال نوع الشارع على الأقل");
+    return;
+  }
+
+  if(!r.priority) r.priority = computePriority(r);
+
+  const recs = getRecords();
+  const idx = recs.findIndex(x => x._id === editingRecordId);
+  if(idx === -1){ toast("⚠ السجل غير موجود"); return; }
+
+  r._id = recs[idx]._id;
+  r.seq = recs[idx].seq;
+  r._created = recs[idx]._created;
+  r._updated = new Date().toISOString();
+
+  recs[idx] = r;
+  setRecords(recs);
+
+  cancelEdit();
+  renderTable();
+  toast("✅ تم تحديث السجل رقم " + r.seq);
+}
+
+function cancelEdit(){
+  editingRecordId = null;
+  document.getElementById("editBanner").classList.remove("open");
+
+  const saveBtn = document.querySelector("#formContainer .btn-ok");
+  if(saveBtn){
+    saveBtn.textContent = "💾 حفظ المقطع";
+    saveBtn.title = "";
+  }
+
+  resetForm();
+  renderTable();
+}
+
+/* =========================================================
+   10) جدول السجل
+   ========================================================= */
+function renderTable(){
+  const recs = getRecords();
+  const body = document.getElementById("recordsBody");
+  document.getElementById("count").textContent = recs.length;
+  if(recs.length === 0){
+    body.innerHTML = '<tr><td colspan="6" class="empty">لا توجد مقاطع محفوظة بعد</td></tr>';
+    return;
+  }
+  body.innerHTML = recs.map(r => {
+    const cls = r.priority === "عالية" ? "pill-high"
+              : r.priority === "متوسطة" ? "pill-mid"
+              : r.priority === "منخفضة" ? "pill-low" : "";
+    const editCls = (editingRecordId === r._id) ? " editing" : "";
+    return `<tr class="rec-row${editCls}" onclick="loadRecord(${r._id})">
+      <td>${r.seq || ""}</td>
+      <td>${esc(r.sector)}</td>
+      <td>${esc(r.neighborhood)}</td>
+      <td>${esc(r.street_type)}</td>
+      <td><span class="pill ${cls}">${esc(r.priority)}</span></td>
+      <td>
+        <button class="btn btn-ghost btn-sm"
+          onclick="event.stopPropagation(); deleteRecord(${r._id})">
+          حذف
+        </button>
+      </td>
+    </tr>`;
+  }).join("");
+}
+
+function deleteRecord(id){
+  if(editingRecordId === id){
+    if(!confirm("هذا السجل قيد التحرير حالياً. سيتم إلغاء التحرير وحذفه.\n\nهل أنت متأكد؟")) return;
+    cancelEdit();
+  } else {
+    if(!confirm("حذف هذا المقطع؟")) return;
+  }
+
+  const recs = getRecords().filter(x => x._id !== id);
+  recs.forEach((r,i) => r.seq = i+1);
+  setRecords(recs);
+  renderTable();
+  toast("✅ تم الحذف");
+}
+
+function wipeRecords(){
+  if(!confirm("سيتم حذف كل السجلات المحفوظة. هل أنت متأكد؟")) return;
+  if(!confirm("تأكيد أخير: حذف كل السجلات نهائياً؟")) return;
+  localStorage.removeItem(RECORDS_KEY);
+  cancelEdit();
+  renderTable();
+  toast("✅ تم مسح كل السجلات");
+}
+
+/* =========================================================
+   11) تصدير Excel / CSV / JSON
+   ========================================================= */
+function exportXLSX(){
+  const recs = getRecords();
+  if(recs.length === 0){ toast("⚠ لا توجد بيانات للتصدير"); return; }
+  if(typeof XLSX === "undefined"){
+    toast("⚠ مكتبة Excel لم تُحمَّل. تحقق من الملف xlsx.bundle.js");
+    return;
+  }
+
+  const cols = [];
+  const seen = new Set();
+  SCHEMA.sections.forEach(sec => {
+    sec.fields.forEach(f => {
+      if(f.type === "photo") return;
+      if(seen.has(f.id)) return;
+      seen.add(f.id);
+      cols.push({ id:f.id, label:f.label });
+    });
+  });
+
+  const header = ["المتسلسل", ...cols.map(c => c.label)];
+  const rows = recs.map(r => [r.seq ?? "", ...cols.map(c => r[c.id] ?? "")]);
+  const dataSheet = XLSX.utils.aoa_to_sheet([header, ...rows]);
+  dataSheet["!cols"] = header.map(h => ({ wch: Math.max(14, String(h).length + 2) }));
+
+  header.forEach((_, i) => {
+    const ref = XLSX.utils.encode_cell({ r:0, c:i });
+    if(!dataSheet[ref]) return;
+    dataSheet[ref].s = {
+      font:{ bold:true, color:{ rgb:"FFFFFF" }, sz:12 },
+      fill:{ fgColor:{ rgb:"1D6FB8" } },
+      alignment:{ horizontal:"center", vertical:"center", wrapText:true },
+      border: thinBorder()
+    };
+  });
+
+  const priorityColIdx = cols.findIndex(c => c.id === "priority") + 1;
+  const badCols = new Set(["pavement","sidewalk","lighting","cleanness","air",
+    "pedestrian","access","noise_level","night","drainage","visual_pollution",
+    "dust","ada_ramps","parked_cars","emissions"]);
+
+  recs.forEach((r, i) => {
+    for(let j=0; j<header.length; j++){
+      const ref = XLSX.utils.encode_cell({ r:i+1, c:j });
+      if(!dataSheet[ref]) dataSheet[ref] = { t:"s", v:"" };
+      dataSheet[ref].s = dataSheet[ref].s || {};
+      dataSheet[ref].s.border = thinBorder();
+      dataSheet[ref].s.alignment = { horizontal:"right", vertical:"center", wrapText:true };
+      dataSheet[ref].s.font = { sz:11 };
+
+      if(j === priorityColIdx){
+        const v = r.priority;
+        const fill = v === "عالية" ? "FDE2E2"
+                   : v === "متوسطة" ? "FEF3C7"
+                   : v === "منخفضة" ? "DCFCE7" : null;
+        if(fill){
+          dataSheet[ref].s.fill = { fgColor:{ rgb: fill } };
+          dataSheet[ref].s.font = { sz:11, bold:true };
+          dataSheet[ref].s.alignment.horizontal = "center";
+        }
+      } else if(j > 0){
+        const cid = cols[j-1].id;
+        if(badCols.has(cid)){
+          const val = String(r[cid] || "");
+          if(val === "سيئ") dataSheet[ref].s.fill = { fgColor:{ rgb:"FFF1F1" } };
+          if(val === "سيئ جداً") dataSheet[ref].s.fill = { fgColor:{ rgb:"FBCFCF" } };
+        }
+      }
+    }
+  });
+
+  dataSheet["!freeze"] = { xSplit:0, ySplit:1 };
+  dataSheet["!autofilter"] = {
+    ref: XLSX.utils.encode_range({
+      s:{ r:0, c:0 }, e:{ r:recs.length, c:header.length-1 }
+    })
+  };
+  dataSheet["!rows"] = [{ hpt:30 }];
+
+  const total = recs.length;
+  const cnt = (k,v) => recs.filter(r => r[k] === v).length;
+  const bad = k => recs.filter(r => ["سيئ","سيئ جداً"].includes(r[k])).length;
+  const sumN = k => recs.reduce((s,r) => s + (parseFloat(r[k])||0), 0);
+
+  const summary = [
+    ["المؤشر","القيمة"],
+    ["عدد المقاطع الممسوحة", total],
+    ["",""],
+    ["أولوية عالية", cnt("priority","عالية")],
+    ["أولوية متوسطة", cnt("priority","متوسطة")],
+    ["أولوية منخفضة", cnt("priority","منخفضة")],
+    ["",""],
+    ["حساسية عالية", cnt("sensitivity","عالي")],
+    ["حساسية متوسطة", cnt("sensitivity","متوسط")],
+    ["حساسية منخفضة", cnt("sensitivity","منخفض")],
+    ["",""],
+    ["كثافة حركة عالية", cnt("traffic","عالي")],
+    ["كثافة حركة متوسطة", cnt("traffic","متوسط")],
+    ["كثافة حركة منخفضة", cnt("traffic","منخفض")],
+    ["",""],
+    ["رصف سيئ أو سيئ جداً", bad("pavement")],
+    ["أرصفة سيئة أو سيئة جداً", bad("sidewalk")],
+    ["إنارة سيئة أو سيئة جداً", bad("lighting")],
+    ["نظافة سيئة أو سيئة جداً", bad("cleanness")],
+    ["تصريف سيئ أو سيئ جداً", bad("drainage")],
+    ["تلوث بصري سيئ أو سيئ جداً", bad("visual_pollution")],
+    ["ضوضاء سيئة أو سيئ جداً", bad("noise_level")],
+    ["هواء سيئ أو سيئ جداً", bad("air")],
+    ["",""],
+    ["مخلفات بناء (كثيراً)", cnt("waste","يوجد كثيراً")],
+    ["مخلفات بناء (قليلاً)", cnt("waste","يوجد قليلاً")],
+    ["لا يوجد مخلفات", cnt("waste","لا يوجد")],
+    ["",""],
+    ["مقاطع فيها شبكة صرف صحي", cnt("sewage","يوجد")],
+    ["مقاطع بلا شبكة صرف صحي", cnt("sewage","لا يوجد")],
+    ["مقاطع فيها دورات مياه عامة", cnt("public_toilets","يوجد")],
+    ["مقاطع فيها مقاعد جلوس", cnt("benches","يوجد")],
+    ["مقاطع فيها نقاط شحن كهربائي", cnt("ev_charging","يوجد")],
+    ["مقاطع فيها مواقف باصات", cnt("bus_stops","يوجد")],
+    ["",""],
+    ["إجمالي مساحة الإسفلت المتضررة (م²)", sumN("damaged_area")],
+    ["إجمالي طول الأرصفة المتضررة (م)", sumN("damaged_sidewalk")],
+    ["إجمالي الحاويات 240 لتر المطلوبة", sumN("bins_240")],
+    ["إجمالي الحاويات الكبيرة المطلوبة", sumN("bins_big")],
+    ["إجمالي الحاويات المتوفرة حالياً", sumN("bins_avail")],
+    ["متوسط نسبة الظل (%)",
+      total ? (sumN("shade_ratio")/total).toFixed(1) : "0"],
+    ["",""],
+    ["تاريخ التصدير", new Date().toLocaleString("ar-SY")]
+  ];
+  const sumSheet = XLSX.utils.aoa_to_sheet(summary);
+  sumSheet["!cols"] = [{wch:38},{wch:18}];
+  ["A1","B1"].forEach(ref => {
+    if(sumSheet[ref]) sumSheet[ref].s = {
+      font:{ bold:true, color:{ rgb:"FFFFFF" }, sz:12 },
+      fill:{ fgColor:{ rgb:"155A94" } },
+      alignment:{ horizontal:"center" }
+    };
+  });
+  for(let r=1; r<summary.length; r++){
+    ["A","B"].forEach(col => {
+      const ref = col + (r+1);
+      if(sumSheet[ref]){
+        sumSheet[ref].s = sumSheet[ref].s || {};
+        sumSheet[ref].s.border = thinBorder();
+        sumSheet[ref].s.alignment =
+          col === "B" ? { horizontal:"center" } : { horizontal:"right" };
+      }
+    });
+  }
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, dataSheet, "Data");
+  XLSX.utils.book_append_sheet(wb, sumSheet, "Summary");
+  XLSX.writeFile(wb,
+    "salamieh_survey_" + new Date().toISOString().slice(0,10) + ".xlsx");
+  toast("✅ تم تصدير " + total + " سجل");
+}
+
+function thinBorder(){
+  const b = { style:"thin", color:{ rgb:"D0D7E2" } };
+  return { top:b, bottom:b, left:b, right:b };
+}
+
+function exportCSV(){
+  const recs = getRecords();
+  if(recs.length === 0){ toast("⚠ لا توجد بيانات"); return; }
+  const cols = [];
+  const seen = new Set();
+  SCHEMA.sections.forEach(sec => sec.fields.forEach(f => {
+    if(f.type === "photo") return;
+    if(seen.has(f.id)) return;
+    seen.add(f.id); cols.push({ id:f.id, label:f.label });
+  }));
+  const header = ["المتسلسل", ...cols.map(c => c.label)];
+  const rows = recs.map(r => [r.seq ?? "", ...cols.map(c => r[c.id] ?? "")]);
+  const csv = [header, ...rows]
+    .map(row => row.map(c => `"${String(c).replace(/"/g,'""')}"`).join(","))
+    .join("\r\n");
+  const blob = new Blob(["\uFEFF" + csv], {type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "salamieh_survey_" + new Date().toISOString().slice(0,10) + ".csv";
+  a.click(); URL.revokeObjectURL(url);
+  toast("✅ تم تصدير CSV");
+}
+
+function exportJSON(){
+  const recs = getRecords();
+  if(recs.length === 0){ toast("⚠ لا توجد بيانات"); return; }
+  const blob = new Blob([JSON.stringify(recs, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "salamieh_backup_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click(); URL.revokeObjectURL(url);
+  toast("✅ تم إنشاء النسخة الاحتياطية");
+}
+
+function importJSON(){
+  const inp = document.createElement("input");
+  inp.type = "file"; inp.accept = ".json";
+  inp.onchange = ev => {
+    const file = ev.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try{
+        const arr = JSON.parse(e.target.result);
+        if(!Array.isArray(arr)) throw new Error("صيغة غير صحيحة");
+        const existing = getRecords();
+        const ids = new Set(existing.map(x => x._id));
+        let added = 0;
+        arr.forEach(r => { if(!ids.has(r._id)){ existing.push(r); added++; } });
+        existing.forEach((r,i) => r.seq = i+1);
+        setRecords(existing);
+        renderTable();
+        toast("✅ تم استيراد " + added + " سجل");
+      }catch(err){ toast("⚠ فشل الاستيراد: " + err.message); }
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
+}
+
+/* =========================================================
+   12) كلمة سر الإدارة
+   ========================================================= */
+function openSettings(){
+  showPasswordModal();
+}
+
+function showPasswordModal(){
+  const existing = document.getElementById("passwordModal");
+  if(existing) existing.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "passwordModal";
+  modal.className = "gps-help";
+
+  modal.innerHTML = `
+    <div class="gps-help-box password-box">
+      <span class="icon">🔒</span>
+      <h3>كلمة سر الإدارة</h3>
+      <p class="subtitle">
+        هذه المنطقة مخصصة للمشرف فقط.<br>
+        أدخل كلمة السر للوصول إلى إعدادات الحقول.
+      </p>
+      <input id="passwordInput" type="password" inputmode="numeric"
+        maxlength="20" autocomplete="off" placeholder="••••••••">
+      <div id="passwordError"></div>
+      <button class="gps-help-btn"
+        style="background:#1d6fb8;color:#fff;"
+        onclick="verifyPassword()">
+        🔓 دخول
+      </button>
+      <button class="gps-help-btn"
+        style="background:#eef2f7;color:#374151;font-size:13px;"
+        onclick="closePasswordModal()">
+        إلغاء
+      </button>
+      <div class="pw-hint">
+        💡 كلمة السر الافتراضية: <b>11223344</b>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  setTimeout(() => {
+    const inp = document.getElementById("passwordInput");
+    if(inp) inp.focus();
+  }, 120);
+
+  const inp = document.getElementById("passwordInput");
+  if(inp){
+    inp.addEventListener("keydown", e => {
+      if(e.key === "Enter") verifyPassword();
+      if(e.key === "Escape") closePasswordModal();
+    });
+  }
+}
+
+function verifyPassword(){
+  const input = document.getElementById("passwordInput");
+  const error = document.getElementById("passwordError");
+  if(!input || !error) return;
+
+  const entered = input.value.trim();
+  const correct = getAdminPassword();
+
+  if(entered === correct){
+    closePasswordModal();
+    renderSchemaList();
+    document.getElementById("settingsModal").classList.add("open");
+    clearPasswordFields();
+  } else {
+    error.textContent = "❌ كلمة السر غير صحيحة";
+    input.value = "";
+    input.classList.add("error");
+    input.focus();
+    setTimeout(() => {
+      input.classList.remove("error");
+    }, 500);
+  }
+}
+
+function closePasswordModal(){
+  const m = document.getElementById("passwordModal");
+  if(m) m.remove();
+}
+
+function clearPasswordFields(){
+  const c = document.getElementById("currentPw");
+  const n = document.getElementById("newPw");
+  const nc = document.getElementById("newPwConfirm");
+  const msg = document.getElementById("pwChangeMsg");
+  if(c) c.value = "";
+  if(n) n.value = "";
+  if(nc) nc.value = "";
+  if(msg) msg.textContent = "";
+}
+
+function changePassword(){
+  const c = document.getElementById("currentPw");
+  const n = document.getElementById("newPw");
+  const nc = document.getElementById("newPwConfirm");
+  const msg = document.getElementById("pwChangeMsg");
+
+  const current = (c.value || "").trim();
+  const newPw = (n.value || "").trim();
+  const confirmPw = (nc.value || "").trim();
+
+  msg.style.color = "#c0392b";
+  msg.textContent = "";
+
+  if(!current || !newPw || !confirmPw){
+    msg.textContent = "❌ يرجى ملء جميع الحقول";
+    return;
+  }
+
+  if(current !== getAdminPassword()){
+    msg.textContent = "❌ كلمة السر الحالية غير صحيحة";
+    return;
+  }
+
+  if(newPw.length < 4){
+    msg.textContent = "❌ كلمة السر يجب أن تكون 4 أرقام على الأقل";
+    return;
+  }
+
+  if(newPw !== confirmPw){
+    msg.textContent = "❌ كلمتا السر الجديدتان غير متطابقتين";
+    return;
+  }
+
+  setAdminPassword(newPw);
+  msg.style.color = "#2e9e5b";
+  msg.textContent = "✅ تم تغيير كلمة السر بنجاح";
+
+  setTimeout(() => {
+    clearPasswordFields();
+    msg.textContent = "";
+  }, 2500);
+}
+
+/* =========================================================
+   13) إدارة الحقول
+   ========================================================= */
+let editingField = null;
+let editingSection = null;
+
+function closeSettings(){
+  cancelFieldEdit();
+  cancelSectionEdit();
+  clearPasswordFields();
+  document.getElementById("settingsModal").classList.remove("open");
+}
+
+function renderSchemaList(){
+  const wrap = document.getElementById("schemaList");
+  wrap.innerHTML = SCHEMA.sections.map((sec) => `
+    <div class="sec-block">
+      <h3>
+        <span class="sec-title">${esc(sec.title)}</span>
+        <span>
+          <button class="edit-icon" onclick="editSection('${sec.id}')">✏️ تعديل القسم</button>
+          <button class="btn btn-danger btn-sm"
+            onclick="deleteSection('${sec.id}')">حذف القسم</button>
+        </span>
+      </h3>
+      ${sec.fields.map(f => `
+        <div class="field-row">
+          <span class="fname">${esc(f.label)}
+            ${f.required ? '<span class="badge">مطلوب</span>' : ''}
+          </span>
+          <span class="ftype">[${typeName(f.type)}]</span>
+          <button class="edit-icon"
+            onclick="editField('${sec.id}','${f.id}')">✏️ تعديل</button>
+          <button class="btn btn-ghost btn-sm"
+            onclick="deleteField('${sec.id}','${f.id}')">حذف</button>
+        </div>
+      `).join("") || '<div class="hint">لا حقول في هذا القسم</div>'}
+    </div>
+  `).join("");
+
+  const sel = document.getElementById("newFieldSection");
+  sel.innerHTML = SCHEMA.sections
+    .map(s => `<option value="${s.id}">${esc(s.title)}</option>`).join("");
+}
+
+function typeName(t){
+  return ({
+    text:"نص", integer:"رقم صحيح", number:"رقم عشري", select:"قائمة",
+    scale:"مقياس", scale_ext:"مقياس موسّع", yesno:"يوجد/لا يوجد",
+    date:"تاريخ", textarea:"نص طويل", gps:"GPS", photo:"صورة"
+  })[t] || t;
+}
+
+function deleteField(secId, fieldId){
+  if(!confirm("حذف هذا الحقل؟")) return;
+  const sec = SCHEMA.sections.find(s => s.id === secId);
+  if(!sec) return;
+  sec.fields = sec.fields.filter(f => f.id !== fieldId);
+  saveSchema(SCHEMA);
+  if(editingField && editingField.fieldId === fieldId) cancelFieldEdit();
+  renderSchemaList();
+  renderForm();
+  toast("تم حذف الحقل");
+}
+
+function deleteSection(secId){
+  if(!confirm("حذف هذا القسم بكل حقوله؟")) return;
+  SCHEMA.sections = SCHEMA.sections.filter(s => s.id !== secId);
+  saveSchema(SCHEMA);
+  if(editingSection === secId) cancelSectionEdit();
+  renderSchemaList();
+  renderForm();
+  toast("تم حذف القسم");
+}
+
+function editField(secId, fieldId){
+  const sec = SCHEMA.sections.find(s => s.id === secId);
+  if(!sec) return;
+  const f = sec.fields.find(x => x.id === fieldId);
+  if(!f) return;
+
+  editingField = { secId, fieldId };
+  cancelSectionEdit();
+
+  document.getElementById("newFieldSection").value = secId;
+  document.getElementById("newFieldLabel").value = f.label;
+  document.getElementById("newFieldType").value = f.type;
+  document.getElementById("newFieldRequired").value = f.required ? "true" : "false";
+
+  const optionsWrap = document.getElementById("optionsWrap");
+  if(f.type === "select"){
+    optionsWrap.style.display = "block";
+    document.getElementById("newFieldOptions").value = (f.options || []).join("\n");
+  } else {
+    optionsWrap.style.display = "none";
+    document.getElementById("newFieldOptions").value = "";
+  }
+
+  document.getElementById("fieldForm").classList.add("editing");
+  document.getElementById("fieldFormTitle").textContent =
+    "✏️ تعديل الحقل: " + f.label;
+  document.getElementById("addFieldBtn").textContent = "💾 حفظ التعديلات";
+  document.getElementById("cancelEditBtn").style.display = "inline-flex";
+  document.getElementById("fieldFormTitle").scrollIntoView({behavior:"smooth"});
+}
+
+function cancelFieldEdit(){
+  editingField = null;
+  document.getElementById("fieldForm").classList.remove("editing");
+  document.getElementById("fieldFormTitle").textContent = "➕ إضافة حقل جديد";
+  document.getElementById("addFieldBtn").textContent = "إضافة الحقل";
+  document.getElementById("cancelEditBtn").style.display = "none";
+  document.getElementById("newFieldLabel").value = "";
+  document.getElementById("newFieldOptions").value = "";
+  document.getElementById("optionsWrap").style.display = "none";
+}
+
+function addNewField(){
+  const secId = document.getElementById("newFieldSection").value;
+  const label = document.getElementById("newFieldLabel").value.trim();
+  const type = document.getElementById("newFieldType").value;
+  const required = document.getElementById("newFieldRequired").value === "true";
+  const optionsRaw = document.getElementById("newFieldOptions").value;
+
+  if(!label){ toast("⚠ يرجى إدخال اسم الحقل"); return; }
+  const sec = SCHEMA.sections.find(s => s.id === secId);
+  if(!sec){ toast("⚠ القسم غير موجود"); return; }
+
+  let options = null;
+  if(type === "select"){
+    options = optionsRaw.split("\n").map(s => s.trim()).filter(Boolean);
+    if(options.length === 0){ toast("⚠ أدخل خيارات القائمة"); return; }
+  } else if(type === "scale"){
+    options = SCALE.slice();
+  } else if(type === "scale_ext"){
+    options = SCALE_EXT.slice();
+  } else if(type === "yesno"){
+    options = YESNO.slice();
+  }
+
+  const snapshot = collectForm();
+
+  if(editingField){
+    const oldSec = SCHEMA.sections.find(s => s.id === editingField.secId);
+    const field = oldSec && oldSec.fields.find(x => x.id === editingField.fieldId);
+    if(!field){ toast("⚠ لم يتم العثور على الحقل"); return; }
+
+    if(editingField.secId !== secId){
+      oldSec.fields = oldSec.fields.filter(x => x.id !== editingField.fieldId);
+      field.label = label; field.type = type; field.required = required;
+      if(options) field.options = options; else delete field.options;
+      sec.fields.push(field);
+    } else {
+      field.label = label; field.type = type; field.required = required;
+      if(options) field.options = options; else delete field.options;
+    }
+
+    saveSchema(SCHEMA);
+    renderSchemaList();
+    renderForm();
+    restoreForm(snapshot);
+    cancelFieldEdit();
+    toast("✅ تم حفظ التعديلات");
+    return;
+  }
+
+  let id = slug(label);
+  const allIds = new Set();
+  SCHEMA.sections.forEach(s => s.fields.forEach(f => allIds.add(f.id)));
+  let finalId = id, n = 1;
+  while(allIds.has(finalId)){ finalId = id + "_" + (++n); }
+
+  const field = { id: finalId, label, type, required };
+  if(options) field.options = options;
+  sec.fields.push(field);
+  saveSchema(SCHEMA);
+  renderSchemaList();
+  renderForm();
+  restoreForm(snapshot);
+  document.getElementById("newFieldLabel").value = "";
+  document.getElementById("newFieldOptions").value = "";
+  toast("✅ تمت إضافة الحقل: " + label);
+}
+
+function editSection(secId){
+  const sec = SCHEMA.sections.find(s => s.id === secId);
+  if(!sec) return;
+
+  editingSection = secId;
+  cancelFieldEdit();
+
+  document.getElementById("newSectionTitle").value = sec.title;
+  document.getElementById("sectionForm").classList.add("editing");
+  document.getElementById("sectionFormTitle").textContent =
+    "✏️ تعديل القسم: " + sec.title;
+  document.getElementById("addSectionBtn").textContent = "💾 حفظ";
+  document.getElementById("cancelSectionBtn").style.display = "inline-flex";
+  document.getElementById("sectionFormTitle").scrollIntoView({behavior:"smooth"});
+}
+
+function cancelSectionEdit(){
+  editingSection = null;
+  document.getElementById("sectionForm").classList.remove("editing");
+  document.getElementById("sectionFormTitle").textContent = "➕ إضافة قسم جديد";
+  document.getElementById("addSectionBtn").textContent = "إضافة القسم";
+  document.getElementById("cancelSectionBtn").style.display = "none";
+  document.getElementById("newSectionTitle").value = "";
+}
+
+function addNewSection(){
+  const title = document.getElementById("newSectionTitle").value.trim();
+  if(!title){ toast("⚠ أدخل عنوان القسم"); return; }
+
+  if(editingSection){
+    const sec = SCHEMA.sections.find(s => s.id === editingSection);
+    if(sec){
+      sec.title = title;
+      saveSchema(SCHEMA);
+      renderSchemaList();
+      renderForm();
+      cancelSectionEdit();
+      toast("✅ تم حفظ عنوان القسم");
+    }
+    return;
+  }
+
+  let id = slug(title);
+  const ids = new Set(SCHEMA.sections.map(s => s.id));
+  let finalId = id, n = 1;
+  while(ids.has(finalId)){ finalId = id + "_" + (++n); }
+  SCHEMA.sections.push({ id:finalId, title, fields:[] });
+  saveSchema(SCHEMA);
+  renderSchemaList();
+  renderForm();
+  document.getElementById("newSectionTitle").value = "";
+  toast("✅ تمت إضافة القسم");
+}
+
+function resetSchema(){
+  if(!confirm("استعادة الحقول الافتراضية؟ (السجلات لن تُحذف)")) return;
+  SCHEMA = JSON.parse(JSON.stringify(DEFAULT_SCHEMA));
+  saveSchema(SCHEMA);
+  renderSchemaList();
+  renderForm();
+  cancelFieldEdit();
+  cancelSectionEdit();
+  toast("✅ تمت الاستعادة");
+}
+
+function exportSchema(){
+  const blob = new Blob([JSON.stringify(SCHEMA, null, 2)],
+    {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "salamieh_schema_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click(); URL.revokeObjectURL(url);
+  toast("✅ تم تصدير المخطط");
+}
+
+function importSchema(){
+  const inp = document.createElement("input");
+  inp.type = "file"; inp.accept = ".json";
+  inp.onchange = ev => {
+    const file = ev.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try{
+        const s = JSON.parse(e.target.result);
+        if(!s || !Array.isArray(s.sections)) throw new Error("صيغة غير صحيحة");
+        SCHEMA = s; saveSchema(SCHEMA);
+        renderSchemaList(); renderForm();
+        toast("✅ تم استيراد المخطط");
+      }catch(err){ toast("⚠ فشل الاستيراد: " + err.message); }
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
+}
+
+document.getElementById("newFieldType").addEventListener("change", e => {
+  const t = e.target.value;
+  document.getElementById("optionsWrap").style.display =
+    (t === "select") ? "block" : "none";
+});
+
+/* =========================================================
+   14) أزرار الحفظ
+   ========================================================= */
+function renderSaveButtons(){
+  const cont = document.getElementById("formContainer");
+  const bar = document.createElement("section");
+  bar.style.display = "flex";
+  bar.style.gap = "8px";
+  bar.style.flexWrap = "wrap";
+  bar.innerHTML = `
+    <button class="btn btn-ok" type="button" onclick="saveRecord()"
+      style="flex:1;min-width:150px;">
+      💾 حفظ المقطع
+    </button>
+    <button class="btn btn-ghost" type="button" onclick="clearFormButton()"
+      style="flex:1;min-width:150px;">
+      ↺ تفريغ النموذج
+    </button>
+  `;
+  cont.appendChild(bar);
+}
+
+function clearFormButton(){
+  if(editingRecordId){
+    if(!confirm("أنت في وضع التحرير. هل تريد إلغاء التحرير وتفريغ النموذج؟")) return;
+    cancelEdit();
+    toast("تم إلغاء التحرير");
+    return;
+  }
+  resetForm();
+  toast("تم تفريغ النموذج");
+}
+
+/* =========================================================
+   15) التشغيل
+   ========================================================= */
+renderForm();
+renderSaveButtons();
+renderTable();
+
+if(!window.isSecureContext && !localStorage.getItem("gps_warned")){
+  setTimeout(() => {
+    const banner = document.createElement("div");
+    banner.style.cssText = `
+      position:fixed; bottom:90px; left:50%; transform:translateX(-50%);
+      background:#fff7ed; color:#7c2d12; border:2px solid #d97706;
+      padding:14px 18px; border-radius:10px; z-index:150;
+      max-width:90%; box-shadow:0 4px 16px rgba(0,0,0,.2);
+      font-size:13px; line-height:1.6;
+    `;
+    banner.innerHTML = `
+      <strong>⚠ تنبيه GPS:</strong><br>
+      المتصفح يمنع تحديد الموقع على هذا الرابط.<br>
+      استخدم أزرار <b>✏️ يدوي</b> أو <b>🗺️</b> بجانب حقل GPS.<br>
+      <button onclick="this.parentElement.remove()"
+        style="margin-top:8px;padding:6px 14px;background:#d97706;
+        color:#fff;border:none;border-radius:6px;font-weight:700;
+        cursor:pointer;font-family:inherit;">
+        فهمت
+      </button>
+    `;
+    document.body.appendChild(banner);
+    localStorage.setItem("gps_warned", "1");
+  }, 1000);
+}
+</script>
+
+
+</body></html>

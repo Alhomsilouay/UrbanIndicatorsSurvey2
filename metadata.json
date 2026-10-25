@@ -1,0 +1,11 @@
+{
+  "name": "المسح الميداني الخدمي — سلمية | Salamieh Field Survey",
+  "description": "تطبيق المسح الميداني لمدينة سلمية لجمع وتوثيق بيانات الشوارع والبنية التحتية والمؤشرات الحضرية مع دعم كامل للعمل دون إنترنت وGPS وتصدير Excel وتثبيت APK للهواتف المحمولة.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
